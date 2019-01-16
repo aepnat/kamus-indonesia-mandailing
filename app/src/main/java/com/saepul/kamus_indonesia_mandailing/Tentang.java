@@ -7,7 +7,7 @@ import android.os.Bundle;
  * Created by Saepul on 10/14/2018.
  */
 
-public class Bantuan extends Activity {
+public class Tentang extends Activity {
 
     @Override
     public void onCreate(Bundle saveInstanceState){
