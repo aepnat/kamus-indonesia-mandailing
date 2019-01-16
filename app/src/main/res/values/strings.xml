@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Kamus Indonesia Mandailing</string>
+    <string name="bantuan">Bantuan</string>
+    <string name="keluar">Keluar</string>
+    <string name="kamus">Kamus</string>
+    <string name="bantuan_title">Bantuan</string>
+    <string name="mandailing_label">Mandailing :</string>
+    <string name="cari">Cari</string>
+    <string name="indonesia_label">Indonesia :</string>
+    <string name="indonesia_mandailing_label">Indonesia - Mandailing</string>
+    <string name="mandailing_indonesia_label">Mandailing - Indonesia</string>
+</resources>
