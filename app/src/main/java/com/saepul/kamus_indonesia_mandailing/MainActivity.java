@@ -35,7 +35,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     class click02 implements Button.OnClickListener {
         public void onClick(View view) {
-            Intent i = new Intent(MainActivity.this,Bantuan.class);
+            Intent i = new Intent(MainActivity.this,Tentang.class);
             startActivity(i);
         }
     }
