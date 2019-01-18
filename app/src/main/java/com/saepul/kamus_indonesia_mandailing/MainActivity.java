@@ -5,11 +5,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends Activity implements View.OnClickListener {
-    Button kamus, bantuan, exit;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    Button kamus, tentang, exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +20,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         kamus = findViewById(R.id.button1);
         kamus.setOnClickListener(new click01());
 
-        bantuan = findViewById(R.id.button2);
-        bantuan.setOnClickListener(new click02());
+        tentang = findViewById(R.id.button2);
+        tentang.setOnClickListener(new click02());
 
         exit = findViewById(R.id.button4);
         exit.setOnClickListener(this);
@@ -28,7 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     class click01 implements Button.OnClickListener {
         public void onClick(View view) {
-            Intent i = new Intent(MainActivity.this, Kamus.class);
+            Intent i = new Intent(MainActivity.this, showKamus1.class);
             startActivity(i);
         }
     }
@@ -42,15 +43,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public void onClick(View v) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Pemberitahuan");
-        alert.setMessage("Yakin ingin keluar?");
-        alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+        alert.setTitle(R.string.notice_text);
+        alert.setMessage(R.string.confirmation_text);
+        alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 finish();
             }
         });
-        alert.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

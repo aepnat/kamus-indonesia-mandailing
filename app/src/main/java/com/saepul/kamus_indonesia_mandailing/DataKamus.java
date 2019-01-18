@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataKamus extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "dbkamus";
 
-    private static final String INGGRIS = "inggris";
     private static final String INDONESIA = "indonesia";
     private static final String MANDAILING = "mandailing";
 
@@ -20,46 +19,21 @@ public class DataKamus extends SQLiteOpenHelper{
     public void createTable(SQLiteDatabase db){
         db.execSQL("DROP TABLE IF EXISTS kamus");
         db.execSQL("CREATE TABLE if not exists kamus (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "inggris TEXT, indonesia TEXT, mandailing TEXT);");
+                "indonesia TEXT, mandailing TEXT);");
     }
 
     //Method generateData untuk mengisikan data ke kamus
     public void generatedData(SQLiteDatabase db){
         ContentValues cv = new ContentValues();
-        cv.put(INGGRIS,"me");
+
         cv.put(INDONESIA,"saya");
         cv.put(MANDAILING,"au");
+        db.insert("kamus", null, cv);
 
-        db.insert("kamus", INGGRIS, cv);
-
-        cv.put(INGGRIS,"we");
         cv.put(INDONESIA,"kami");
         cv.put(MANDAILING,"ami");
+        db.insert("kamus", null, cv);
 
-        db.insert("kamus", INGGRIS, cv);
-
-        cv.put(INGGRIS,"me");
-        cv.put(INDONESIA,"saya");
-        cv.put(MANDAILING,"au");
-
-        db.insert("kamus", INGGRIS, cv);
-
-        cv.put(INGGRIS,"we");
-        cv.put(INDONESIA,"kami");
-        cv.put(MANDAILING,"ami");
-
-        db.insert("kamus", INGGRIS, cv);
-        cv.put(INGGRIS,"me");
-        cv.put(INDONESIA,"saya");
-        cv.put(MANDAILING,"au");
-
-        db.insert("kamus", INGGRIS, cv);
-
-        cv.put(INGGRIS,"we");
-        cv.put(INDONESIA,"kami");
-        cv.put(MANDAILING,"ami");
-
-        db.insert("kamus", INGGRIS, cv);
     }
 
     @Override

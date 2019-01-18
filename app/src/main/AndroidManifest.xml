@@ -22,12 +22,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity" />
-        <activity android:name=".Kamus" />
-        <activity android:name=".Tentang" />
-        <activity android:name=".showKamus1" />
-        <activity android:name=".showKamus2" />
+        <activity
+            android:name=".Tentang"
+            android:parentActivityName="com.saepul.kamus_indonesia_mandailing.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.saepul.kamus_indonesia_mandailing.MainActivity" />
+        </activity>
+        <activity
+            android:name=".showKamus1"
+            android:parentActivityName="com.saepul.kamus_indonesia_mandailing.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.saepul.kamus_indonesia_mandailing.MainActivity" />
+        </activity>
+        <activity
+            android:name=".showKamus2"
+            android:parentActivityName="com.saepul.kamus_indonesia_mandailing.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.saepul.kamus_indonesia_mandailing.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

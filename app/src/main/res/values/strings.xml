@@ -1,16 +1,38 @@
 <resources>
     <string name="app_name">Kamus Indonesia Mandailing</string>
-    <string name="bantuan">Bantuan</string>
+    <string name="tentang">Tentang</string>
     <string name="keluar">Keluar</string>
     <string name="kamus">Kamus</string>
-    <string name="bantuan_title">Bantuan</string>
-    <string name="mandailing_label">Mandailing :</string>
+    <string name="mandailing_label">Mandailing</string>
     <string name="cari">Cari</string>
-    <string name="indonesia_label">Indonesia :</string>
+    <string name="indonesia_label">Indonesia</string>
     <string name="indonesia_mandailing_label">Indonesia - Mandailing</string>
     <string name="mandailing_indonesia_label">Mandailing - Indonesia</string>
 
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="logo_text">Logo</string>
+    <string name="notice_text">Pemberitahuan</string>
+    <string name="confirmation_text">Yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="title_activity_main2">Kamus Indonesia Mandailing</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="icon_exchange">&#xf0ec;</string>
+    <string name="tentang_artikel">
+        <![CDATA[
+        <h2>Tentang</h2>
+        <p>Bahasa Angkola adalah salah satu bahasa di daerah Tapanuli bagian Selatan yang dipergunakan dalam kehidupan sehari-hari.</p>
+        <p>Pada aplikasi kamus bahasa Indonesia-Angkola ini terdapat beberapa menu, diantaranya :</p>
+        <p>
+        1. Menu kamus digunakan untuk mencari kosakata yang kalian butuhkan baik dalam bahasa Indonesia ke bahasa Angkola ataupun bahasa Angkola ke bahasa Indonesia.<br /><br />
+        2. Menu tentang digunakan untuk menjelaskan isi dari aplikasi kamus bahasa Indonesia-Angkola ini.<br /><br />
+        3. Menu keluar digunakan untuk keluar dari aplikasi.<br /><br />
+        </p>
+        ]]>
+    </string>
+    <string name="description_logo_splash_screen">Logo Splash Screen</string>
 </resources>

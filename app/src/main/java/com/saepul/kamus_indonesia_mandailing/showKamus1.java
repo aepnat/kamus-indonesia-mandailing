@@ -1,54 +1,89 @@
 package com.saepul.kamus_indonesia_mandailing;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Button;
+import android.widget.Toast;
+import android.graphics.Typeface;
 
 /**
  * Created by Saepul on 10/11/2018.
  */
 
-public class showKamus1 extends Activity{
+public class showKamus1 extends AppCompatActivity {
     private SQLiteDatabase db = null;
-    private Cursor kamusCursor = null;
-    private EditText txtIndonesia;
-    private EditText txtMandailing;
-    private DataKamus1 datakamus = null;
-    public static final String INDONESIA = "indonesia";
-    public static final String MANDAILING = "mandailing";
+    private Button changeButton;
+    private EditText translateText;
+    private EditText resultText;
+    private DataKamus datakamus = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        datakamus =  new DataKamus1(this);
+        datakamus =  new DataKamus(this);
         db = datakamus.getWritableDatabase();
         datakamus.createTable(db);
         datakamus.generatedData(db);
 
+        Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+
         setContentView(R.layout.main1);
-        txtIndonesia = findViewById(R.id.txtIndonesia);
-        txtMandailing = findViewById(R.id.txtMandailing);
+
+        changeButton = findViewById(R.id.buttonChange);
+        changeButton.setOnClickListener(new changeKamus());
+        changeButton.setTypeface(font);
+
+        translateText = findViewById(R.id.translateText);
+
+        resultText = findViewById(R.id.resultText);
+        resultText.setEnabled(false);
+        resultText.setKeyListener(null);
+        translateText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    getTerjemahan();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
-    public void getTerjemahan(View v){
-        String result2 = "";
 
-        String englishword = txtIndonesia.getText().toString();
-        kamusCursor=db.rawQuery("SELECT id, indonesia, inggris, mandailing " +
-                        "FROM kamus where indonesia='" + englishword + "' ORDER BY indonesia", null);
+    class changeKamus implements Button.OnClickListener {
+        public void onClick(View view) {
+            Intent i = new Intent(showKamus1.this, showKamus2.class);
+            startActivity(i);
+        }
+    }
 
-        if (kamusCursor.moveToFirst()){
-            result2 =  kamusCursor.getString(3);
-            for (;!kamusCursor.isAfterLast();kamusCursor.moveToNext()){
-                result2 = kamusCursor.getString(3);
+    public void getTerjemahan()
+    {
+        String resultData = "";
+        String toTranslate = translateText.getText().toString();
+        Cursor kamusCursor = db.rawQuery("SELECT mandailing FROM kamus where indonesia='"+ toTranslate +"'", null);
+        if (kamusCursor.moveToFirst()) {
+            resultData = kamusCursor.getString(0);
+            for (;!kamusCursor.isAfterLast();kamusCursor.moveToNext()) {
+                resultData = kamusCursor.getString(0);
             }
         }
-        if (result2.equals("")){
-            result2 = "Terjemahan not found";
+
+        if (resultData.equals("")) {
+            Toast.makeText(getApplicationContext(), "Terjemahan tidak ditemukan", Toast.LENGTH_LONG).show();
+            resultText.setText("");
+        } else {
+            resultText.setText(resultData);
         }
-        txtIndonesia.setText(result2);
+
+        kamusCursor.close();
     }
 
     @Override
