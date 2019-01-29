@@ -1,13 +1,19 @@
 package com.saepul.kamus_indonesia_mandailing;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
@@ -42,9 +48,51 @@ public class showKamus1 extends AppCompatActivity {
 
         translateText = findViewById(R.id.translateText);
 
+        Drawable clear;
+        if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            clear = getBaseContext().getResources().getDrawable(R.drawable.ic_clear_black_24dp, getBaseContext().getTheme());
+        } else {
+            clear = VectorDrawableCompat.create(getBaseContext().getResources(), R.drawable.ic_clear_black_24dp, getBaseContext().getTheme());
+        }
+
+        translateText.setCompoundDrawablesWithIntrinsicBounds(null, null, clear, null);
+
         resultText = findViewById(R.id.resultText);
-        resultText.setEnabled(false);
-        resultText.setKeyListener(null);
+//        resultText.setEnabled(false);
+//        resultText.setKeyListener(null);
+
+        translateText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if (motionEvent.getX()>(view.getWidth()-120)){
+                        ((EditText)view).setText("");
+                        resultText.setText("");
+                    }
+                }
+                return false;
+            }
+        });
+
+        Drawable enter;
+        if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            enter = getBaseContext().getResources().getDrawable(R.drawable.ic_play_circle_filled_black_24dp, getBaseContext().getTheme());
+        } else {
+            enter = VectorDrawableCompat.create(getBaseContext().getResources(), R.drawable.ic_play_circle_filled_black_24dp, getBaseContext().getTheme());
+        }
+        resultText.setCompoundDrawablesWithIntrinsicBounds(null, null, enter, null);
+        resultText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if (motionEvent.getX()>(view.getWidth()-120)){
+                        getTerjemahan();
+                    }
+                }
+                return false;
+            }
+        });
+
         translateText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
@@ -67,8 +115,9 @@ public class showKamus1 extends AppCompatActivity {
     public void getTerjemahan()
     {
         String resultData = "";
+        resultText.setText("");
         String toTranslate = translateText.getText().toString();
-        Cursor kamusCursor = db.rawQuery("SELECT mandailing FROM kamus where indonesia='"+ toTranslate +"'", null);
+        Cursor kamusCursor = db.rawQuery("SELECT mandailing FROM kamus WHERE indonesia='" + toTranslate + "'", null);
         if (kamusCursor.moveToFirst()) {
             resultData = kamusCursor.getString(0);
             for (;!kamusCursor.isAfterLast();kamusCursor.moveToNext()) {
@@ -77,11 +126,16 @@ public class showKamus1 extends AppCompatActivity {
         }
 
         if (resultData.equals("")) {
-            Toast.makeText(getApplicationContext(), "Terjemahan tidak ditemukan", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(getApplicationContext(), "Terjemahan tidak ditemukan", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
             resultText.setText("");
         } else {
             resultText.setText(resultData);
         }
+        translateText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(translateText, InputMethodManager.SHOW_IMPLICIT);
 
         kamusCursor.close();
     }
