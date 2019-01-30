@@ -61,8 +61,6 @@ public class DataKamus extends SQLiteOpenHelper{
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Log.d("aepnat", sql);
-
         // execute the query
         Cursor cursor = db.rawQuery(sql, null);
 
@@ -73,6 +71,41 @@ public class DataKamus extends SQLiteOpenHelper{
                 String indonesia = cursor.getString(cursor.getColumnIndex(INDONESIA));
                 String mandailing = cursor.getString(cursor.getColumnIndex(MANDAILING));
                 MyObject myObject = new MyObject(indonesia, mandailing);
+
+                // add to list
+                recordsList.add(myObject);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        // return the list of records
+        return recordsList;
+    }
+
+    public List<MyObject> readMandailing(String searchTerm) {
+        List<MyObject> recordsList = new ArrayList<MyObject>();
+
+        // select query
+        String sql = "";
+        sql += "SELECT * FROM " + DATABASE_NAME;
+        sql += " WHERE " + MANDAILING + " LIKE '%" + searchTerm + "%'";
+        sql += " ORDER BY " + MANDAILING + " DESC";
+        sql += " LIMIT 0,5";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // execute the query
+        Cursor cursor = db.rawQuery(sql, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+
+                String indonesia = cursor.getString(cursor.getColumnIndex(INDONESIA));
+                String mandailing = cursor.getString(cursor.getColumnIndex(MANDAILING));
+                MyObject myObject = new MyObject(mandailing, indonesia);
 
                 // add to list
                 recordsList.add(myObject);

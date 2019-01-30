@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -41,8 +40,6 @@ public class showKamus1 extends AppCompatActivity {
     // adapter for auto-complete
     ArrayAdapter<String> myAdapter;
 
-    List<MyObject> myObjectList;
-
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -61,7 +58,7 @@ public class showKamus1 extends AppCompatActivity {
 
         translateText = findViewById(R.id.translateText);
 
-        translateText.addTextChangedListener(new CustomAutoCompleteTextChangedListener(this));
+        translateText.addTextChangedListener(new CustomAutoCompleteTextChangedListener(this, "kamus1"));
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item);
         translateText.setAdapter(myAdapter);
 
@@ -132,8 +129,6 @@ public class showKamus1 extends AppCompatActivity {
         String resultData = "";
         resultText.setText("");
         String toTranslate = translateText.getText().toString();
-        Log.d("aepnat", "ini translatenya " + toTranslate);
-        Log.d("aepnat", "ini sqlnya " + "SELECT mandailing FROM kamus WHERE indonesia='" + toTranslate + "'");
         Cursor kamusCursor = db.rawQuery("SELECT mandailing FROM kamus WHERE indonesia='" + toTranslate + "'", null);
         if (kamusCursor.moveToFirst()) {
             resultData = kamusCursor.getString(0);

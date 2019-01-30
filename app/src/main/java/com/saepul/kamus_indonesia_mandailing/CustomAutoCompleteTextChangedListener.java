@@ -10,9 +10,11 @@ public class CustomAutoCompleteTextChangedListener implements TextWatcher {
 
     public static final String TAG = "CustomAutoCompleteTextChangedListener.java";
     Context context;
+    String type;
 
-    public CustomAutoCompleteTextChangedListener(Context context){
+    public CustomAutoCompleteTextChangedListener(Context context, String type){
         this.context = context;
+        this.type = type;
     }
 
     @Override
@@ -34,15 +36,27 @@ public class CustomAutoCompleteTextChangedListener implements TextWatcher {
         // if you want to see in the logcat what the user types
         Log.d("aepnat", "User input: " + userInput);
 
-        showKamus1 showKamus1 = ((showKamus1) context);
+        if (type == "kamus1") {
+            showKamus1 showKamus1 = ((showKamus1) context);
 
-        // query the database based on the user input
-        showKamus1.item = showKamus1.getItemsFromDb(userInput.toString());
+            // query the database based on the user input
+            showKamus1.item = showKamus1.getItemsFromDb(userInput.toString());
 
-        // update the adapater
-        showKamus1.myAdapter.notifyDataSetChanged();
-        showKamus1.myAdapter = new ArrayAdapter<String>(showKamus1, android.R.layout.simple_dropdown_item_1line, showKamus1.item);
-        showKamus1.translateText.setAdapter(showKamus1.myAdapter);
+            // update the adapater
+            showKamus1.myAdapter.notifyDataSetChanged();
+            showKamus1.myAdapter = new ArrayAdapter<String>(showKamus1, android.R.layout.simple_dropdown_item_1line, showKamus1.item);
+            showKamus1.translateText.setAdapter(showKamus1.myAdapter);
+        } else if (type == "kamus2") {
+            showKamus2 showKamus2 = ((showKamus2) context);
+
+            // query the database based on the user input
+            showKamus2.item = showKamus2.getItemsFromDb(userInput.toString());
+
+            // update the adapater
+            showKamus2.myAdapter.notifyDataSetChanged();
+            showKamus2.myAdapter = new ArrayAdapter<String>(showKamus2, android.R.layout.simple_dropdown_item_1line, showKamus2.item);
+            showKamus2.translateText.setAdapter(showKamus2.myAdapter);
+        }
 
     }
 
