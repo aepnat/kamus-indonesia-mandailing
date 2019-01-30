@@ -1,5 +1,6 @@
 package com.saepul.kamus_indonesia_mandailing;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -17,6 +18,11 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        DataKamus datakamus =  new DataKamus(this);
+        SQLiteDatabase db = datakamus.getWritableDatabase();
+        datakamus.createTable(db);
+        datakamus.generatedData(db);
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/

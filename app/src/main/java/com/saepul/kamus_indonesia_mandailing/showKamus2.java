@@ -42,8 +42,6 @@ public class showKamus2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         datakamus =  new DataKamus(this);
         db = datakamus.getWritableDatabase();
-        datakamus.createTable(db);
-        datakamus.generatedData(db);
 
         Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
 
