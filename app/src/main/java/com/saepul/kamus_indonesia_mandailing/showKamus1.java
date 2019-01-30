@@ -9,15 +9,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
 import android.graphics.Typeface;
+
+import java.util.List;
 
 /**
  * Created by Saepul on 10/11/2018.
@@ -26,9 +30,18 @@ import android.graphics.Typeface;
 public class showKamus1 extends AppCompatActivity {
     private SQLiteDatabase db = null;
     private Button changeButton;
-    private EditText translateText;
+
+    public CustomAutoCompleteView translateText;
+
     private EditText resultText;
     private DataKamus datakamus = null;
+
+    String[] item = new String[] {"Please search..."};
+
+    // adapter for auto-complete
+    ArrayAdapter<String> myAdapter;
+
+    List<MyObject> myObjectList;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -48,6 +61,10 @@ public class showKamus1 extends AppCompatActivity {
 
         translateText = findViewById(R.id.translateText);
 
+        translateText.addTextChangedListener(new CustomAutoCompleteTextChangedListener(this));
+        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item);
+        translateText.setAdapter(myAdapter);
+
         Drawable clear;
         if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             clear = getBaseContext().getResources().getDrawable(R.drawable.ic_clear_black_24dp, getBaseContext().getTheme());
@@ -58,8 +75,6 @@ public class showKamus1 extends AppCompatActivity {
         translateText.setCompoundDrawablesWithIntrinsicBounds(null, null, clear, null);
 
         resultText = findViewById(R.id.resultText);
-//        resultText.setEnabled(false);
-//        resultText.setKeyListener(null);
 
         translateText.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -117,6 +132,8 @@ public class showKamus1 extends AppCompatActivity {
         String resultData = "";
         resultText.setText("");
         String toTranslate = translateText.getText().toString();
+        Log.d("aepnat", "ini translatenya " + toTranslate);
+        Log.d("aepnat", "ini sqlnya " + "SELECT mandailing FROM kamus WHERE indonesia='" + toTranslate + "'");
         Cursor kamusCursor = db.rawQuery("SELECT mandailing FROM kamus WHERE indonesia='" + toTranslate + "'", null);
         if (kamusCursor.moveToFirst()) {
             resultData = kamusCursor.getString(0);
@@ -139,6 +156,26 @@ public class showKamus1 extends AppCompatActivity {
 
         kamusCursor.close();
     }
+
+    // this function is used in CustomAutoCompleteTextChangedListener.java
+    public String[] getItemsFromDb(String searchTerm){
+
+        // add items on the array dynamically
+        List<MyObject> products = datakamus.readIndonesia(searchTerm);
+        int rowCount = products.size();
+
+        String[] item = new String[rowCount];
+        int x = 0;
+
+        for (MyObject record : products) {
+
+            item[x] = record.objectName;
+            x++;
+        }
+
+        return item;
+    }
+
 
     @Override
     public void onDestroy(){

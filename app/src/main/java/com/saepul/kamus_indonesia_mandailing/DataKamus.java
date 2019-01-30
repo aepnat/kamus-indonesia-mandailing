@@ -2,11 +2,16 @@ package com.saepul.kamus_indonesia_mandailing;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataKamus extends SQLiteOpenHelper{
-    private static final String DATABASE_NAME = "dbkamus";
+    private static final String DATABASE_NAME = "kamus";
 
     private static final String INDONESIA = "indonesia";
     private static final String MANDAILING = "mandailing";
@@ -42,5 +47,42 @@ public class DataKamus extends SQLiteOpenHelper{
     }
     @Override
     public void onCreate(SQLiteDatabase db){
+    }
+
+    public List<MyObject> readIndonesia(String searchTerm) {
+        List<MyObject> recordsList = new ArrayList<MyObject>();
+
+        // select query
+        String sql = "";
+        sql += "SELECT * FROM " + DATABASE_NAME;
+        sql += " WHERE " + INDONESIA + " LIKE '%" + searchTerm + "%'";
+        sql += " ORDER BY " + INDONESIA + " DESC";
+        sql += " LIMIT 0,5";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Log.d("aepnat", sql);
+
+        // execute the query
+        Cursor cursor = db.rawQuery(sql, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+
+                String indonesia = cursor.getString(cursor.getColumnIndex(INDONESIA));
+                String mandailing = cursor.getString(cursor.getColumnIndex(MANDAILING));
+                MyObject myObject = new MyObject(indonesia, mandailing);
+
+                // add to list
+                recordsList.add(myObject);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        // return the list of records
+        return recordsList;
     }
 }
