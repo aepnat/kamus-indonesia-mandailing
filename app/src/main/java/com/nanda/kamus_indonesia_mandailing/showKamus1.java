@@ -34,7 +34,7 @@ public class showKamus1 extends AppCompatActivity {
     public CustomAutoCompleteView translateText;
 
     private EditText resultText;
-    private ImageView enterButton;
+    private Button enterButton;
 
     private DataKamus datakamus = null;
 
@@ -76,7 +76,6 @@ public class showKamus1 extends AppCompatActivity {
         resultText.setEnabled(false);
 
         enterButton = findViewById(R.id.enterButton);
-        enterButton.setImageResource(R.drawable.ic_play_circle_filled_black_24dp);
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +129,7 @@ public class showKamus1 extends AppCompatActivity {
         }
 
         if (resultData.equals("")) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Terjemahan tidak ditemukan", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getApplicationContext(), "Terjemahan tidak ditemukan", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             resultText.setText("");

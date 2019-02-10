@@ -58,11 +58,11 @@
             android:background="@drawable/edit_text_background"
             android:ems="10" />
 
-        <ImageButton
+        <Button
             android:id="@+id/enterButton"
-            android:background="@android:color/transparent"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TERJEMAH"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"/>
     </LinearLayout>
