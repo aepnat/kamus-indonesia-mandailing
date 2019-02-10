@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tentang = findViewById(R.id.button2);
         tentang.setOnClickListener(new click02());
 
-        exit = findViewById(R.id.button4);
+        exit = findViewById(R.id.button3);
         exit.setOnClickListener(this);
     }
 

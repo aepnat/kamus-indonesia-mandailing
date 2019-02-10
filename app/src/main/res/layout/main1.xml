@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@drawable/rumahadat">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +43,7 @@
             android:id="@+id/translateText"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:background="@drawable/edit_text_background"
+            android:background="@android:color/holo_blue_light"
             android:ems="10"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
@@ -55,15 +56,35 @@
             android:layout_height="73dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/edit_text_background"
+            android:background="@android:color/white"
             android:ems="10" />
 
         <Button
             android:id="@+id/enterButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:text="TERJEMAH"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/buttonred"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_margin="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="@string/copyright"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

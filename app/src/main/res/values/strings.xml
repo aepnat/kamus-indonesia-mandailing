@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kamus Indonesia Mandailing</string>
+    <string name="app_name">Kamus Indonesia - Mandailing</string>
     <string name="tentang">Tentang</string>
     <string name="keluar">Keluar</string>
     <string name="kamus">Kamus</string>
@@ -35,4 +35,5 @@
         ]]>
     </string>
     <string name="description_logo_splash_screen">Logo Splash Screen</string>
+    <string name="copyright">Copyright@AndaGusniarLubis</string>
 </resources>
