@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.saepul.kamus_indonesia_mandailing">
+    package="com.nanda.kamus_indonesia_mandailing">
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".SplashScreen"
+            android:name="com.nanda.kamus_indonesia_mandailing.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -22,27 +22,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.nanda.kamus_indonesia_mandailing.MainActivity" />
         <activity
-            android:name=".Tentang"
-            android:parentActivityName="com.saepul.kamus_indonesia_mandailing.MainActivity">
+            android:name="com.nanda.kamus_indonesia_mandailing.Tentang"
+            android:parentActivityName="com.nanda.kamus_indonesia_mandailing.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.saepul.kamus_indonesia_mandailing.MainActivity" />
+                android:value="com.nanda.kamus_indonesia_mandailing.MainActivity" />
         </activity>
         <activity
-            android:name=".showKamus1"
-            android:parentActivityName="com.saepul.kamus_indonesia_mandailing.MainActivity">
+            android:name="com.nanda.kamus_indonesia_mandailing.showKamus1"
+            android:parentActivityName="com.nanda.kamus_indonesia_mandailing.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.saepul.kamus_indonesia_mandailing.MainActivity" />
+                android:value="com.nanda.kamus_indonesia_mandailing.MainActivity" />
         </activity>
         <activity
-            android:name=".showKamus2"
-            android:parentActivityName="com.saepul.kamus_indonesia_mandailing.MainActivity">
+            android:name="com.nanda.kamus_indonesia_mandailing.showKamus2"
+            android:parentActivityName="com.nanda.kamus_indonesia_mandailing.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.saepul.kamus_indonesia_mandailing.MainActivity" />
+                android:value="com.nanda.kamus_indonesia_mandailing.MainActivity" />
         </activity>
     </application>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.saepul.kamus_indonesia_mandailing.MainActivity"
+    tools:context="com.nanda.kamus_indonesia_mandailing.MainActivity"
     android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
     android:orientation="vertical">
 

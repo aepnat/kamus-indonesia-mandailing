@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
@@ -37,7 +38,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.saepul.kamus_indonesia_mandailing.CustomAutoCompleteView
+        <com.nanda.kamus_indonesia_mandailing.CustomAutoCompleteView
             android:id="@+id/translateText"
             android:layout_width="match_parent"
             android:layout_height="75dp"
@@ -56,5 +57,13 @@
             android:paddingEnd="20dp"
             android:background="@drawable/edit_text_background"
             android:ems="10" />
+
+        <ImageButton
+            android:id="@+id/enterButton"
+            android:background="@android:color/transparent"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"/>
     </LinearLayout>
 </LinearLayout>

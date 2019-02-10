@@ -1,11 +1,10 @@
-package com.saepul.kamus_indonesia_mandailing;
+package com.nanda.kamus_indonesia_mandailing;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,5 @@
-package com.saepul.kamus_indonesia_mandailing;
+package com.nanda.kamus_indonesia_mandailing;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;

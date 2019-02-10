@@ -1,4 +1,4 @@
-package com.saepul.kamus_indonesia_mandailing;
+package com.nanda.kamus_indonesia_mandailing;
 
 import org.junit.Test;
 

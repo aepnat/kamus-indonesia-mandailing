@@ -1,4 +1,4 @@
-package com.saepul.kamus_indonesia_mandailing;
+package com.nanda.kamus_indonesia_mandailing;
 
 import android.content.Context;
 import android.text.Editable;
@@ -32,9 +32,6 @@ public class CustomAutoCompleteTextChangedListener implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence userInput, int start, int before, int count) {
-
-        // if you want to see in the logcat what the user types
-        Log.d("aepnat", "User input: " + userInput);
 
         if (type == "kamus1") {
             showKamus1 showKamus1 = ((showKamus1) context);
